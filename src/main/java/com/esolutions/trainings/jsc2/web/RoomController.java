@@ -10,5 +10,8 @@ public class RoomController {
     @GetMapping(value = "/floors/{floor}/rooms/{room}")
     public GuestResponse getGuestNumber(@PathVariable int floor, @PathVariable int room){
         return new GuestResponse(null);
+
+
+
     }
 }
