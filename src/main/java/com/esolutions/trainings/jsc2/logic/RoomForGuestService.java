@@ -1,6 +1,7 @@
 package com.esolutions.trainings.jsc2.logic;
 
 import com.esolutions.trainings.jsc2.model.Guest;
+import com.esolutions.trainings.jsc2.model.GuestForRoom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -15,28 +16,28 @@ public class RoomForGuestService {
         this.repository = repository;
     }
 
-    HashMap<Integer, Integer> hotelDistribution = new HashMap<Integer, Integer>();
+    HashMap<Integer, GuestForRoom> hotelDistribution = new HashMap<Integer, GuestForRoom>();
 
     public void perfectSquaresRoomCalculation(int floor, int room) {
         populateHotel();
 
     }
 
-    public HashMap<Integer, Integer> populateHotel() {
+    public HashMap<Integer, GuestForRoom> populateHotel() {
 
         for (int i = 1; i <= 50000; i++) {
             boolean notPut = true;
             while (notPut) {
-                int lastfloor = 1;
-                if (hotelDistribution.get(lastfloor) != null) {
-                    if (isPerfectSquare(i + hotelDistribution.get(lastfloor))) {
-                        hotelDistribution.put(lastfloor, i);
+                int lastFloor = 1;
+                if (hotelDistribution.get(lastFloor) != null) {
+                    if (isPerfectSquare(i + hotelDistribution.get(lastFloor).getOrder())) {
+                        hotelDistribution.put(lastFloor, new GuestForRoom(i, hotelDistribution.get(lastFloor).getRoom() + 1));
                         notPut = false;
                     } else {
-                        lastfloor++;
+                        lastFloor++;
                     }
                 } else {
-                    hotelDistribution.put(lastfloor, i);
+                    hotelDistribution.put(lastFloor, new GuestForRoom(i, 1));
                     notPut = false;
                 }
             }
