@@ -18,22 +18,29 @@ public class RoomForGuestService {
     HashMap<Integer, Integer> hotelDistribution = new HashMap<Integer, Integer>();
 
     public void perfectSquaresRoomCalculation(int floor, int room) {
-
-        int lastFloor = 0, lastRoom = 0;
-        int guest;
-        while (lastFloor != floor && lastRoom == room) {
-
-        }
+        populateHotel();
 
     }
 
     public HashMap<Integer, Integer> populateHotel() {
 
-
         for (int i = 1; i <= 50000; i++) {
-
+            boolean notPut = true;
+            while (notPut) {
+                int lastfloor = 1;
+                if (hotelDistribution.get(lastfloor) != null) {
+                    if (isPerfectSquare(i + hotelDistribution.get(lastfloor))) {
+                        hotelDistribution.put(lastfloor, i);
+                        notPut = false;
+                    } else {
+                        lastfloor++;
+                    }
+                } else {
+                    hotelDistribution.put(lastfloor, i);
+                    notPut = false;
+                }
+            }
         }
-
         return hotelDistribution;
     }
 
