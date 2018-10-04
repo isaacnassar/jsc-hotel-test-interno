@@ -1,5 +1,7 @@
 package com.esolutions.trainings.jsc2.logic;
 
+import com.esolutions.trainings.jsc2.db.ReservationRepository;
+import com.esolutions.trainings.jsc2.db.RoomRepository;
 import com.esolutions.trainings.jsc2.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -8,15 +10,19 @@ import java.util.List;
 
 public class ReservationService {
 
-    private final JpaRepository<Reservation, Long> repository;
+    private final ReservationRepository reservationRepository;
+    private final RoomRepository roomRepository;
+
 
     @Autowired
-    public ReservationService(JpaRepository<Reservation, Long> repository) {
-        this.repository = repository;
+    public ReservationService(ReservationRepository reservationRepository,
+                              RoomRepository roomRepository) {
+        this.reservationRepository = reservationRepository;
+        this.roomRepository = roomRepository;
     }
 
     public ReservationModel onlineReservation(ReservationRequest body, int floor, int room ){
-        List<Reservation> list = this.repository.findAll();
+        List<Reservation> list = this.reservationRepository.findAll();
         boolean alreadyBooked = false;
         double importe = 0.0;
 
@@ -36,6 +42,11 @@ public class ReservationService {
         }
 
         if (!alreadyBooked){
+            Room habitacion = this.roomRepository.findByFloorAndRoom(floor,room);
+            importe = 10.0;
+
+            reservationRepository.save(new Reservation(body.getCheckIn(), body.getCheckOut(),habitacion, importe));
+
 
         }
 

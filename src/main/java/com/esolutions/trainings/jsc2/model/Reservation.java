@@ -7,6 +7,7 @@ import java.util.Date;
 @Table(name = "RESERVATIONS")
 public class Reservation {
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
     @Temporal(TemporalType.DATE)
@@ -19,14 +20,17 @@ public class Reservation {
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id", nullable = false)
-    private Guest guest;
-
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id", nullable = false)
     private Room room;
 
     @Column(name = "importe_total", nullable = false, unique = true)
     private double importeTotal;
+
+    public Reservation(Date dateOfCheckIn, Date dateOfCheckOut, Room room, double importeTotal) {
+        this.dateOfCheckIn = dateOfCheckIn;
+        this.dateOfCheckOut = dateOfCheckOut;
+        this.room = room;
+        this.importeTotal = importeTotal;
+    }
 
     public Long getId() {
         return id;
@@ -50,14 +54,6 @@ public class Reservation {
 
     public void setDateOfCheckOut(Date dateOfCheckOut) {
         this.dateOfCheckOut = dateOfCheckOut;
-    }
-
-    public Guest getGuest() {
-        return guest;
-    }
-
-    public void setGuest(Guest guest) {
-        this.guest = guest;
     }
 
     public Room getRoom() {
