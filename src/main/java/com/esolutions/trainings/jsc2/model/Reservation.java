@@ -26,5 +26,53 @@ public class Reservation {
     private Room room;
 
     @Column(name = "importe_total", nullable = false, unique = true)
-    private Long importeTotal;
+    private double importeTotal;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getDateOfCheckIn() {
+        return dateOfCheckIn;
+    }
+
+    public void setDateOfCheckIn(Date dateOfCheckIn) {
+        this.dateOfCheckIn = dateOfCheckIn;
+    }
+
+    public Date getDateOfCheckOut() {
+        return dateOfCheckOut;
+    }
+
+    public void setDateOfCheckOut(Date dateOfCheckOut) {
+        this.dateOfCheckOut = dateOfCheckOut;
+    }
+
+    public Guest getGuest() {
+        return guest;
+    }
+
+    public void setGuest(Guest guest) {
+        this.guest = guest;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    public double getImporteTotal() {
+        return importeTotal;
+    }
+
+    public void setImporteTotal(double importeTotal) {
+        this.importeTotal = importeTotal;
+    }
 }

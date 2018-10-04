@@ -8,11 +8,11 @@ public class Room {
     @Id
     private Long id;
 
-    @Column(name = "nro_habitacion", nullable = false, unique = true)
-    private String nroHabitacion;
+    @Column(name = "room", nullable = false, unique = true)
+    private int room;
 
-    @Column(name = "nro_piso", nullable = false, unique = true)
-    private String nroPiso;
+    @Column(name = "floor", nullable = false, unique = true)
+    private int floor;
 
     @Column(name = "tipo", nullable = false, unique = true)
     private String tipo;
@@ -25,20 +25,20 @@ public class Room {
         this.id = id;
     }
 
-    public String getNroHabitacion() {
-        return nroHabitacion;
+    public int getRoom() {
+        return room;
     }
 
-    public void setNroHabitacion(String nroHabitacion) {
-        this.nroHabitacion = nroHabitacion;
+    public void setRoom(int room) {
+        this.room = room;
     }
 
-    public String getNroPiso() {
-        return nroPiso;
+    public int getFloor() {
+        return floor;
     }
 
-    public void setNroPiso(String nroPiso) {
-        this.nroPiso = nroPiso;
+    public void setFloor(int floor) {
+        this.floor = floor;
     }
 
     public String getTipo() {
