@@ -21,7 +21,7 @@ public class ReservationController {
     public ReservationModel getGuestNumber(
             @PathVariable int floor,
             @PathVariable int room,
-            @RequestParam(value = "date", required = true) ReservationRequest request) {
+            @RequestParam(value = "date", required = true ) ReservationRequest request) {
 
 
         return reservationService.onlineReservation(request,floor,room);
