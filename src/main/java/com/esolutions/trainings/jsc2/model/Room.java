@@ -6,6 +6,7 @@ import javax.persistence.*;
 @Table(name = "ROOMS")
 public class Room {
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
     @Column(name = "room", nullable = false, unique = true)
@@ -16,6 +17,12 @@ public class Room {
 
     @Column(name = "tipo", nullable = false, unique = true)
     private String tipo;
+
+    public Room(int room, int floor, String tipo) {
+        this.room = room;
+        this.floor = floor;
+        this.tipo = tipo;
+    }
 
     public Long getId() {
         return id;

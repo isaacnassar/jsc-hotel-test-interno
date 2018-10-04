@@ -26,23 +26,27 @@ public class ReservationService {
         boolean alreadyBooked = false;
         double importe = 0.0;
 
-        for (Reservation reservation: list
-             ) {
-            Room habitacion = reservation.getRoom();
-            if(habitacion.getFloor() == floor && habitacion.getRoom() == room){
-                if ( (body.getCheckIn().after(reservation.getDateOfCheckIn())
-                        && body.getCheckIn().before(reservation.getDateOfCheckOut()))
-                        || (body.getCheckOut().after(reservation.getDateOfCheckIn())
-                        && body.getCheckOut().before(reservation.getDateOfCheckOut()))){
-                    alreadyBooked = true;
-                    break;
-                }
+        if (!list.isEmpty()){
+            for (Reservation reservation: list
+            ) {
+                Room habitacion = reservation.getRoom();
+                if(habitacion.getFloor() == floor && habitacion.getRoom() == room){
+                    if ( (body.getCheckIn().after(reservation.getDateOfCheckIn())
+                            && body.getCheckIn().before(reservation.getDateOfCheckOut()))
+                            || (body.getCheckOut().after(reservation.getDateOfCheckIn())
+                            && body.getCheckOut().before(reservation.getDateOfCheckOut()))){
+                        alreadyBooked = true;
+                        break;
+                    }
 
+                }
             }
         }
 
         if (!alreadyBooked){
-            Room habitacion = this.roomRepository.findByFloorAndRoom(floor,room);
+            //Room habitacion = this.roomRepository.findByFloorAndRoom(floor,room);
+            Room habitacion = new Room(room, floor, "Estandar");
+            roomRepository.save(habitacion);
             importe = 10.0;
 
             reservationRepository.save(new Reservation(body.getCheckIn(), body.getCheckOut(),habitacion, importe));
