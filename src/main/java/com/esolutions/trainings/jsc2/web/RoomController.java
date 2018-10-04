@@ -14,7 +14,7 @@ public class RoomController {
     @RequestMapping(value = "/floors/{floor}/rooms/{room}", method = RequestMethod.GET)
     public ReservationModel reservation(
             @PathVariable int floor, int room,
-            @RequestParam(value = "date", required = true) ReservationRequest request) {
+            @RequestParam(value = "ReservationRequest", required = true) ReservationRequest request) {
 
         return new ReservationModel(false, 0.0);
     }
