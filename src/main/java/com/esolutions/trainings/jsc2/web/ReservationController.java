@@ -1,6 +1,5 @@
 package com.esolutions.trainings.jsc2.web;
 
-import com.esolutions.trainings.jsc2.model.Reservation;
 import com.esolutions.trainings.jsc2.model.ReservationModel;
 import com.esolutions.trainings.jsc2.model.ReservationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +19,7 @@ public class ReservationController {
             @PathVariable int floor,
             @PathVariable int room,
             @RequestParam(value = "date", required = true) ReservationRequest request) {
+
 
 
         return new ReservationModel(true, 0.0);
