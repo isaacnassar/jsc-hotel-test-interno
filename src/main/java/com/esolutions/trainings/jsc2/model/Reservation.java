@@ -1,15 +1,30 @@
 package com.esolutions.trainings.jsc2.model;
 
-import org.springframework.stereotype.Component;
+import javax.persistence.*;
+import java.util.Date;
 
-@Component
+@Entity
+@Table(name = "RESERVATIONS")
 public class Reservation {
+    @Id
+    private Long id;
 
-    private boolean booked;
-    private double price;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "check_in")
+    private Date dateOfCheckIn;
 
-    public Reservation(boolean booked, double price) {
-        this.booked = booked;
-        this.price = price;
-    }
+    @Temporal(TemporalType.DATE)
+    @Column(name = "chech_out")
+    private Date dateOfCheckOut;
+
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id", nullable = false)
+    private Guest guest;
+
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id", nullable = false)
+    private Room room;
+
+    @Column(name = "importe_total", nullable = false, unique = true)
+    private Long importeTotal;
 }
