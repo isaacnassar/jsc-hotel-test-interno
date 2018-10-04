@@ -1,9 +1,6 @@
 package com.esolutions.trainings.jsc2.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "ROOMS")
@@ -17,8 +14,8 @@ public class Room {
     @Column(name = "nro_piso", nullable = false, unique = true)
     private String nroPiso;
 
-    @Column(name = "guest", nullable = true, unique = true)
-    private Guest guest;
+    @Column(name = "tipo", nullable = false, unique = true)
+    private String tipo;
 
     public Long getId() {
         return id;
@@ -26,14 +23,6 @@ public class Room {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Guest getGuest() {
-        return guest;
-    }
-
-    public void setGuest(Guest guest) {
-        this.guest = guest;
     }
 
     public String getNroHabitacion() {
@@ -50,5 +39,13 @@ public class Room {
 
     public void setNroPiso(String nroPiso) {
         this.nroPiso = nroPiso;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }
