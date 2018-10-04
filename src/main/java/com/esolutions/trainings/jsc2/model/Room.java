@@ -17,23 +17,12 @@ public class Room {
     @Column(name = "nro_piso", nullable = false, unique = true)
     private String nroPiso;
 
-    @Column(name = "guest", nullable = true, unique = true)
-    private Guest guest;
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Guest getGuest() {
-        return guest;
-    }
-
-    public void setGuest(Guest guest) {
-        this.guest = guest;
     }
 
     public String getNroHabitacion() {
