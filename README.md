@@ -1,4 +1,3 @@
-# Esolutions
 ## Java Starters Challenge - "_Have a_ nice day Hotel"
 **_Have a_ nice day Hotel** es un prestigioso hotel que acaba de inaugurarse.
 
